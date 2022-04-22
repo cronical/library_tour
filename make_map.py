@@ -38,4 +38,6 @@ for ix,row in df.iterrows():
     tooltip=tt,popup=row['Full Address'],icon=icon)
 
   marker.add_to(map)
-map.save('libraries.html')
+fn='docs/index.html'
+map.save(fn)
+print('saved to '+fn)
