@@ -29,7 +29,7 @@ for ix,row in df.iterrows():
   grp_color=(row['Group']-1)%n
   icon=folium.Icon(color=colors[grp_color])
   tt=f"{row['Library']} Group: {row['Group']}"
-  for day in 'Mon','Fri','Sat','Sun','Note':
+  for day in 'Mon','Tues','Fri','Sat','Sun','Note':
     hrs=row[day]
     if pd.notna(hrs):
       tt+=f'<br>{day}: {hrs}'
