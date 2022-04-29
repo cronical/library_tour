@@ -35,7 +35,7 @@ for ix,row in df.iterrows():
       tt+=f'<br>{day}: {hrs}'
 
   marker=folium.Marker([row['latitude'],row['longitude']],
-    tooltip=tt,popup=row['Full Address'],icon=icon)
+    tooltip=tt,popup=row['map_link'],icon=icon)
 
   marker.add_to(map)
 fn='docs/index.html'
