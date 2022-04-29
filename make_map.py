@@ -1,3 +1,4 @@
+import urllib.parse
 import folium
 import pandas as pd
 from numpy import nan
@@ -28,14 +29,16 @@ n=len(colors)
 for ix,row in df.iterrows():
   grp_color=(row['Group']-1)%n
   icon=folium.Icon(color=colors[grp_color])
-  tt=f"{row['Library']} Group: {row['Group']}"
+  tt=f"{row['Library']}. {row['Full Address']}<br>Group: {row['Group']}"
   for day in 'Mon','Tues','Fri','Sat','Sun','Note':
     hrs=row[day]
     if pd.notna(hrs):
       tt+=f'<br>{day}: {hrs}'
-
+  full_address=row['Full Address']
+  full_address2=urllib.parse.quote_plus(full_address)
+  href=f"<a href=http://maps.apple.com?daddr={full_address2}>{full_address}</a>"
   marker=folium.Marker([row['latitude'],row['longitude']],
-    tooltip=tt,popup=row['map_link'],icon=icon)
+    tooltip=tt,popup=href,icon=icon)
 
   marker.add_to(map)
 fn='docs/index.html'
